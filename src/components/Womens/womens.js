@@ -2,13 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Loader from "../Loader/Loader";
 
-export default function Unstitched() {
+export default function Women() {
   const [Products, setProducts] = useState([])
   const [loading, setloading] = useState(true)
 
-
   useEffect(() => {
-
     const fetchingData = async() => {
       try {
 
@@ -16,7 +14,6 @@ export default function Unstitched() {
         let data = await res.json();
         console.log(data);
         setProducts(data);
-        setloading(false)
 
       } catch (error) {
         console.log(error)
@@ -27,7 +24,7 @@ export default function Unstitched() {
   }, [])
  
   const newARRY = Products.filter((item) => {
-    return item.category === "men's clothing";
+    return item.category === "women's clothing";
   });
      
   if (loading) {

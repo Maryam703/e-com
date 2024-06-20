@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Loader from "../Loader/Loader";
+import Loader from '../Loader/Loader'
 
-export default function Unstitched() {
+export default function Electronics() {
   const [Products, setProducts] = useState([])
-  const [loading, setloading] = useState(true)
-
+  const [loader, setLoader] = useState(true)
+  
 
   useEffect(() => {
-
     const fetchingData = async() => {
       try {
 
@@ -16,23 +15,25 @@ export default function Unstitched() {
         let data = await res.json();
         console.log(data);
         setProducts(data);
-        setloading(false)
+        setLoader(false)
 
       } catch (error) {
         console.log(error)
-        setloading(false)
+        setLoader(false)
       }
     }
     fetchingData();
   }, [])
  
   const newARRY = Products.filter((item) => {
-    return item.category === "men's clothing";
+    return item.category === "electronics";
   });
-     
-  if (loading) {
-    return <Loader />
-  }
+
+
+
+     if (loader) {
+      return <Loader />
+     }
   return (
     <>
       {newARRY.map((card) => (

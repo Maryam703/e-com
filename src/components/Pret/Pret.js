@@ -1,13 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Products } from "../Data/DataApi";
+import Loader from '../Loader/Loader'
 
 export default function Pret() {
+  const [products, setProducts] = useState([])
+  const [loading, setLoading] = useState(true)
   
-  const newARRY = Products.filter((item) => {
-    return item.cetagory === "stitched";
+useEffect(() => {
+  const fetchingData = async() => {
+    try {
+      let res = await fetch('https://fakestoreapi.com/products');
+      let data = await res.json();
+      console.log(data);
+      setProducts(data);
+      setLoading(false)
+      
+    } catch (error) {
+      console.log(error)
+      setLoading(false)
+    }
+  }
+  fetchingData();
+},[])
+
+  const newARRY = products.filter((item) => {
+    return item.category === "jewelery";
   });
-  console.log( newARRY);
+
+if (loading) {
+  return <Loader />
+}
 
   return (
     <>
@@ -17,9 +39,9 @@ export default function Pret() {
           <div className="card-image">
             <img className="image" src={card.image} alt="Girl in a jacket"/>
             </div>
-            <div className="card-cetagory">{card.cetagory}</div>
-            <div className="card-titel">{card.titel}</div>
-            <div className="card-price">{card.Price}</div>
+            <div className="card-cetagory">{card.category}</div>
+            <div className="card-titel">{card.title}</div>
+            <div className="card-price">${card.price}</div>
             <div className="card-cart">Add to cart</div>
           </div>
         </Link>

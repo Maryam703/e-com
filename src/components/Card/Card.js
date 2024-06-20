@@ -1,29 +1,45 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { Products } from '../Data/DataApi'
+import Loader from '../Loader/Loader'
 import './Card.css'
 
 export default function Card() {
     const {id} = useParams()
+    const [product, setProducts] = useState({})
+    const [loader, setLoader] = useState(true)
 
-    const data = Products.find((data) => {
-      return  data.id === parseInt(id)
-    })
-    console.log(data)
+    useEffect(() => {
+      const fetchingData = async() => {
+        try {
+          let res = await fetch(`https://fakestoreapi.com/products/${id}`)
+          let data = await res.json();
+          setProducts(data);
+          setLoader(false);
+          
+        } catch (error) {
+          console.log(error);
+          setLoader(false);
+        }
+      }
+      fetchingData();
+    }, [id])
 
-    if (!data) (<div>No Data Found!</div>)
+    if (loader) {
+      return <Loader />
+    }
+
   return (
     <>
     <div className='box'>
       <div className='card-box'>
         <div className='img-box'>
-        <img className='card-img' src={data.image} alt="Girl in a dress"/>
+        <img className='card-img' src={product.image} alt="product image"/>
         </div>
         <div className='card-detail'>
-            <div className='titel-box'>{data.titel}</div>
-            <div className='cetagory-box'>{data.cetagory}</div>
-            <div className='price-box'>{data.Price}</div>
-            <div className='desc-box'>{data.description}</div>
+            <div className='titel-box'>{product.title}</div>
+            <div className='cetagory-box'>{product.category}</div>
+            <div className='price-box'>${product.price}</div>
+            <div className='desc-box'>{product.description}</div>
             <div className="cart-box">Add to Cart</div>
         </div>
       </div>
