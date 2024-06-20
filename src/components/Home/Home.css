@@ -6,7 +6,7 @@
     width: 280px;
     height: 490px;
     margin: 30px;
-    display: inline-block;
+    display:inline-table
 }
 .card-container {
     width: 280px;
@@ -17,7 +17,7 @@
 }
 .card-image {
     width: 260px;
-    height: 220px;
+    height: 250px;
     margin-top: 10px;
     margin-left: 10px;
 }
@@ -27,35 +27,37 @@
     object-fit: contain;
 }
 .card-cetagory {
-    color: rgb(146, 141, 141);
-    font-size: 20px;
-    height: auto;
-    margin-top: 15px;
+    color: rgb(187, 181, 181);
+    font-size: 22px;
+    height:30px;
+    margin-top: 60px;
     margin-left: 10px;
 }
 .card-titel {
     color: rgb(59, 55, 55);
-    font-size: 22px;
+    font-size: 18px;
     font-weight: 600;
-    height: auto;
+    height: 20px;
+    margin-top: 12px;
     margin-left: 10px;
 }
 
 .card-price {
-    color: rgb(59, 55, 55);
-    font-size: 20px;
+    color: rgb(74, 28, 202);
+    font-size: 18px;
     font-weight: 700;
     margin-left: 10px;
-    height: auto;
+    margin-top: auto;
+    height:30px;
 }
 .card-cart {
     color: white;
+    height: 35px;
     background-color: rgb(27, 25, 25);
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 200;
-    margin-top: 10px;
-    height: 40px;
     text-align: center;
+    margin-top: auto;
     align-content: center;
     margin-left: 100px;
     width: 150px;

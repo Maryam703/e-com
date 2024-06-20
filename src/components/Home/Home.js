@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Loader from "../Loader/Loader";
+import axios from 'axios';
 import "./Home.css";
   
 const Home = () => {
@@ -11,10 +12,9 @@ const Home = () => {
     const fetchData = async() => {
     try {
       let url = 'https://fakestoreapi.com/products';
-      let res = await fetch(url);
-      let data = await res.json();
-      console.log(data);
-      setProducts(data);
+      let res = await axios.get(url);
+      console.log(res.data);
+      setProducts(res.data);
       setLoading(false)
       
     } catch (error) {

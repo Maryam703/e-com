@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import Loader from '../Loader/Loader'
 import './Card.css'
@@ -11,9 +12,8 @@ export default function Card() {
     useEffect(() => {
       const fetchingData = async() => {
         try {
-          let res = await fetch(`https://fakestoreapi.com/products/${id}`)
-          let data = await res.json();
-          setProducts(data);
+          let res = await axios.get(`https://fakestoreapi.com/products/${id}`)
+          setProducts(res.data);
           setLoader(false);
           
         } catch (error) {

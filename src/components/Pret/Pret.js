@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import axios from 'axios'
 import Loader from '../Loader/Loader'
 
 export default function Pret() {
@@ -9,10 +10,8 @@ export default function Pret() {
 useEffect(() => {
   const fetchingData = async() => {
     try {
-      let res = await fetch('https://fakestoreapi.com/products');
-      let data = await res.json();
-      console.log(data);
-      setProducts(data);
+      let res = await axios.get('https://fakestoreapi.com/products');
+      setProducts(res.data);
       setLoading(false)
       
     } catch (error) {
