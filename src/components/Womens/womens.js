@@ -31,20 +31,22 @@ export default function Women() {
     return <Loader />
   }
   return (
-    <>
-      {newARRY.map((card) => (
-        <Link to={`/Card/${card.id}`} key={card.id} className="container">
-          <div className="card-container">
-          <div className="card-image">
-            <img className="image" src={card.image} alt="Girl in a jacket"/>
-            </div>
-            <div className="card-titel">{card.title}</div>
-            <div className="card-cetagory">{card.category}</div>
-            <div className="card-price">${card.price}</div>
-            <div className="card-cart">Add to cart</div>
-          </div>
-        </Link>
-      ))}
-    </>
+    <> 
+    {newARRY.map((card) => (
+     <div className="container">
+       <div className="card-container">
+       <Link to={`/Card/${card.id}`} key={card.id} >
+           <div className="card-image">
+             <img className="image" src={card.image} alt="Girl in a jacket" />
+           </div>
+           <div className="card-titel">{card.title}</div>
+           <div className="card-cetagory">{card.category}</div>
+           <div className="card-price">${card.price}</div>
+       </Link>
+       <button className="card-cart" >Add to cart</button >
+       </div>
+       </div>
+     ))}
+   </>
   );
 }

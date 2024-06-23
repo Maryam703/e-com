@@ -17,6 +17,7 @@ import SignUp from "./components/SignUp/SignUp";
 import Card from "./components/Card/Card";
 import Women from "./components/Womens/womens";
 import Electronics from "./components/Electronics/Electronics";
+import CartItems from "./components/CartItems/CartItems";
 
 
 const router = createBrowserRouter(
@@ -31,7 +32,7 @@ const router = createBrowserRouter(
         <Route path="Login" element={<Login />}/>
         <Route path="SignUp" element={<SignUp />} />
         <Route path="Card/:id" element={<Card />}/>
-        
+        <Route path="CartItems" element={<CartItems />}/>
       </Route>
      
     </>

@@ -24,6 +24,19 @@ export default function Card() {
       fetchingData();
     }, [id])
 
+    const btnHandler = (Id) => {
+     console.log(product)
+    
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      
+       if(product){
+        cart.push({...product, quantity:1});
+       }
+    
+       localStorage.setItem("cart", JSON.stringify(cart))
+    
+      }
+
     if (loader) {
       return <Loader />
     }
@@ -40,7 +53,7 @@ export default function Card() {
             <div className='cetagory-box'>{product.category}</div>
             <div className='price-box'>${product.price}</div>
             <div className='desc-box'>{product.description}</div>
-            <div className="cart-box">Add to Cart</div>
+            <button onClick={btnHandler} className="cart-box" >Add to cart</button >
         </div>
       </div>
     </div>
