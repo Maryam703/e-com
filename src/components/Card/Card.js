@@ -24,7 +24,7 @@ export default function Card() {
       fetchingData();
     }, [id])
 
-    const btnHandler = (Id) => {
+    const btnHandler = () => {
      console.log(product)
     
       let cart = JSON.parse(localStorage.getItem("cart")) || [];

@@ -7,14 +7,14 @@ export default function CartItems() {
 
   useEffect(() => {
     let cartItems = JSON.parse(localStorage.getItem("cart"));
-   
+
     if (cartItems) {
       let itemprice = cartItems.reduce((acc, item) => {
-        return acc + item.price
-      }, 0)
-      settotalprice(itemprice)
-      setCartItem(cartItems)}
-
+        return acc + item.price;
+      }, 0);
+      settotalprice(itemprice);
+      setCartItem(cartItems);
+    }
   }, []);
 
   const IncQuantity = (idx) => {
@@ -45,12 +45,14 @@ export default function CartItems() {
 
   const RemoveItem = (idx) => {
     let cartItem = [...cartItems];
-    cartItem.splice([idx], 1);
-
+    let removedItem = cartItem.splice(idx, 1);
+    let newprice = totalprice;
+    newprice -= removedItem[0].price * removedItem[0].quantity;
     localStorage.setItem("cart", JSON.stringify(cartItem));
     setCartItem(cartItem);
+    settotalprice(newprice);
   };
-
+  //condition not rendering
   if (!cartItems) {
     return <p className="cart-para">No Product in your Cart</p>;
   }
@@ -64,9 +66,7 @@ export default function CartItems() {
               <div className="cartItem-detail">
                 <img className="cart-img" src={item.image} />
               </div>
-              <div className="cartItem-price">
-                ${(item.price * item.quantity).toFixed(2)}
-              </div>
+              <div className="cartItem-price">${item.price}</div>
               <div className="cartItem-quantity">
                 <button className="cart-btn" onClick={() => DecQuantity(index)}>
                   -

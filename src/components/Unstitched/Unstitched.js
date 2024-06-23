@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import Productcard from "../ProductCard/Productcard";
 import axios from "axios"
 import Loader from "../Loader/Loader";
 
@@ -35,19 +35,13 @@ export default function Unstitched() {
   return (
     <> 
     {newARRY.map((card) => (
-     <div className="container">
-       <div className="card-container">
-       <Link to={`/Card/${card.id}`} key={card.id} >
-           <div className="card-image">
-             <img className="image" src={card.image} alt="Girl in a jacket" />
-           </div>
-           <div className="card-titel">{card.title}</div>
-           <div className="card-cetagory">{card.category}</div>
-           <div className="card-price">${card.price}</div>
-       </Link>
-       <button className="card-cart" >Add to cart</button >
-       </div>
-       </div>
+      <Productcard
+      id={card.id}
+      image={card.image}
+      title={card.title}
+      category={card.category}
+      price={card.price}
+      />
      ))}
    </>
   );
