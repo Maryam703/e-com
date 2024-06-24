@@ -28,9 +28,12 @@ export default function Card() {
      console.log(product)
     
       let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const existingproduct = cart.find((item)=> item.id === parseInt(id))
       
-       if(product){
-        cart.push({...product, quantity:1});
+       if(existingproduct){
+        existingproduct.quantity++;
+       }else{
+        cart.push({...product, quantity:1})
        }
     
        localStorage.setItem("cart", JSON.stringify(cart))

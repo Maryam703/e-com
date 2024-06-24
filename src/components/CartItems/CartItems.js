@@ -4,18 +4,21 @@ import "./CartItems.css";
 export default function CartItems() {
   const [totalprice, settotalprice] = useState(0);
   const [cartItems, setCartItem] = useState([]);
+  const [isReload, setReload] = useState(0);
+
+
 
   useEffect(() => {
     let cartItems = JSON.parse(localStorage.getItem("cart"));
 
     if (cartItems) {
       let itemprice = cartItems.reduce((acc, item) => {
-        return acc + item.price;
+        return acc + (item.price*item.quantity);
       }, 0);
       settotalprice(itemprice);
       setCartItem(cartItems);
     }
-  }, []);
+  }, [isReload]);
 
   const IncQuantity = (idx) => {
     let cartItem = [...cartItems];
@@ -25,8 +28,7 @@ export default function CartItems() {
 
     localStorage.setItem("cart", JSON.stringify(cartItem));
 
-    setCartItem(cartItem);
-    settotalprice(newtotalprice);
+    setReload((pri) => ++pri);
   };
 
   const DecQuantity = (idx) => {
@@ -38,22 +40,18 @@ export default function CartItems() {
 
       localStorage.setItem("cart", JSON.stringify(cartItem));
 
-      settotalprice(newtotalprice);
-      setCartItem(cartItem);
+      setReload((pri) => ++pri);
     }
   };
 
   const RemoveItem = (idx) => {
     let cartItem = [...cartItems];
-    let removedItem = cartItem.splice(idx, 1);
-    let newprice = totalprice;
-    newprice -= removedItem[0].price * removedItem[0].quantity;
+    cartItem.splice(idx, 1);
     localStorage.setItem("cart", JSON.stringify(cartItem));
-    setCartItem(cartItem);
-    settotalprice(newprice);
+    setReload((pri) => ++pri);
   };
   //condition not rendering
-  if (!cartItems) {
+  if (cartItems.length<1) {
     return <p className="cart-para">No Product in your Cart</p>;
   }
 
