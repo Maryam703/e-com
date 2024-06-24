@@ -10,14 +10,14 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Home from "./components/Home/Home";
-import Unstitched from "./components/Unstitched/Unstitched";
-import Pret from "./components/Pret/Pret";
+import Jewelery from "./components/Jewelery/Jewelery";
 import Login from "./components/Login/Login";
 import SignUp from "./components/SignUp/SignUp";
 import Card from "./components/Card/Card";
 import Women from "./components/Womens/womens";
 import Electronics from "./components/Electronics/Electronics";
 import CartItems from "./components/CartItems/CartItems";
+import MensClothing from "./components/MensClothing/MensClothing";
 
 
 const router = createBrowserRouter(
@@ -25,9 +25,9 @@ const router = createBrowserRouter(
     <>
       <Route path="/" element={<App />}>
         <Route path="" element={<Home />} />
-        <Route path="Unstitched" element={<Unstitched />} />
+        <Route path="Men's Clothing" element={<MensClothing />} />
         <Route path="Women's Clothing" element={<Women/>} />
-        <Route path="Pret" element={<Pret />} />
+        <Route path="Jewelery" element={<Jewelery />} />
         <Route path="Electronics" element={<Electronics />}/>
         <Route path="Login" element={<Login />}/>
         <Route path="SignUp" element={<SignUp />} />

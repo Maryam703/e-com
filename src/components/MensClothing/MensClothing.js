@@ -3,7 +3,7 @@ import Productcard from "../ProductCard/Productcard";
 import axios from "axios"
 import Loader from "../Loader/Loader";
 
-export default function Unstitched() {
+export default function MensClothing() {
   const [Products, setProducts] = useState([])
   const [loading, setloading] = useState(true)
 

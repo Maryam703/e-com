@@ -3,7 +3,7 @@ import Productcard from "../ProductCard/Productcard";
 import axios from 'axios'
 import Loader from '../Loader/Loader'
 
-export default function Pret() {
+export default function Jewelery() {
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(true)
   

@@ -44,45 +44,71 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
 
 ```text
 ├── public/
+│   ├── favicon.ico
+│   ├── index.html
+│   ├── logo192.png
+│   ├── logo512.png
+│   ├── manifest.json
+│   └── robots.txt
 │
 ├── src/
-│  ├── config/
-│  │   ├── elasticsearch.js
-│  │   └── oauth.js
-│  │
-│  ├── controllers/
-│  │   ├── authController.js
-│  │   └── emailController.js
-│  │
-│  ├── env/
-│  │   └── Env.js   (Envs variables are exported for whole app)
-│  │
-│  ├── handler/
-│  │   └── globalError.js
-│  │
-│  ├── routes/
-│  │   ├── authRoutes.js
-│  │   └── emailRoutes.js
-│  │
-│  ├── services/
-│  │   ├── elasticsearchService.js
-│  │   └── outlookService.js
-│  │
-│  ├── utils/
-│  │   ├── ApiResponse.js
-│  │   ├── AppError.js
-│  │   ├── catchAsync.js
-│  │   ├── signToken.js
-│  │   └── constant.js  (constants are exported for whole app)
-│  │
-│  ├── app.js
-│  └── server.js
-│
-├── .env
-├── sample.env
-├── .gitignore
+│   ├── components/
+│   │   ├── Card/
+│   │   │   ├── Card.js
+│   │   │   └── Card.css
+│   │   │
+│   │   ├── CartItems/
+│   │   │   ├── CartItems.js
+│   │   │   └── CartItems.css
+│   │   │
+│   │   ├── Electronics/
+│   │   │   └── Electronics.js
+│   │   │
+│   │   ├── Footer/
+│   │   │   └── Footer.js
+│   │   │
+│   │   ├── Header/
+│   │   │   └── Header.js
+│   │   │
+│   │   ├── Home/
+│   │   │   ├── Home.js
+│   │   │   └── Home.css
+│   │   │
+│   │   ├── Jewelery/
+│   │   │   └── Jewelery.js
+│   │   │
+│   │   ├── Loader/
+│   │   │   ├── Loader.js
+│   │   │   └── Loader.css
+│   │   │
+│   │   ├── Login/
+│   │   │   └── Login.js
+│   │   │
+│   │   ├── MensClothing/
+│   │   │   └── MensClothing.js
+│   │   │
+│   │   ├── ProductCard/
+│   │   │   ├── ProductCard.js
+│   │   │   └── ProductCard.css
+│   │   │
+│   │   ├── SignUp/
+│   │   │   ├── SignUp.css
+│   │   │   └── SignUp.js
+│   │   │
+│   │   └── Womens/
+│   │       └── Womens.js
+│   │
+│   ├── App.css
+│   ├── App.js
+│   ├── App.test.js
+│   ├── index.css
+│   ├── index.js
+│   └── reportWebVitals.js
+│      
+├── package-lock.json
 ├── package.json
-└── readme.md
+├── README.md
+└── tailwind.config.js
 ```
 
 ## Learn More
