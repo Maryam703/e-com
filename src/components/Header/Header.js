@@ -14,12 +14,6 @@ export default function Header() {
               <div className="menu-bar-icon" onClick={() => setMenulist(true)}>
                 <i className="menu-icon fa-solid fa-bars"></i>
               </div>
-              {/*<div className= {menulist ? "menu-options-active" : "menu-options"}>
-        <Link to="Men's Clothing" className="option">Men's Clothing</Link>
-        <Link to="Women's Clothing" className="option">Women's Clothing</Link>
-        <Link to="Jewelery" className="option">Jewelery</Link>
-        <Link to="Electronics" className="option">Electronics</Link>
-      </div>*/}
             </div>
           </nav>
           <Link to="/" className="flex items-center">
