@@ -32,6 +32,7 @@ if (loading) {
 
   return (
     <> 
+    <div className="flex-container">
     {newARRY.map((card) => (
      <Productcard
      id={card.id}
@@ -41,6 +42,7 @@ if (loading) {
      price={card.price}
      />
      ))}
+     </div>
    </>
   );
 }

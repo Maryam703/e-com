@@ -32,7 +32,6 @@ export default function Productcard({ id, image, title, category, price }) {
 
   return (
     <>
-      <div className="container">
         <div className="card-container">
           <Link to={`/Card/${id}`} key={id}>
             <div className="card-image">
@@ -58,7 +57,7 @@ export default function Productcard({ id, image, title, category, price }) {
             theme="light"
           />
         </div>
-      </div>
     </>
   );
 }
+

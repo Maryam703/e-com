@@ -2,21 +2,20 @@
     margin: 0;
     padding: 0;
 }
-.container {
-    width: 280px;
-    height: 490px;
-    margin: 30px;
-    display:inline-table
-}
 .card-container {
     width: 280px;
-    height: 490px;
-    border: 1px solid rgb(225, 218, 218);
-    border-radius: 20px;
+    height: 440px;
+    margin: 30px;
+    display: inline;
+    border: 1px solid rgb(246, 242, 242);
+    border-radius: 10px;
     margin-top: 20px;
 }
+.card-container:hover{
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+}
 .card-image {
-    width: 260px;
+    width: 230px;
     height: 250px;
     margin-top: 10px;
     margin-left: 10px;
@@ -27,28 +26,28 @@
     object-fit: contain;
 }
 .card-cetagory {
-    color: rgb(187, 181, 181);
-    font-size: 22px;
+    color: rgb(220, 212, 212);
+    font-size: 18px;
     height:30px;
-    margin-top: 60px;
+    margin-top: 20px;
     margin-left: 10px;
 }
 .card-titel {
     color: rgb(59, 55, 55);
+    overflow: hidden;
     font-size: 18px;
     font-weight: 600;
     height: 20px;
-    margin-top: 12px;
+    margin-top: 20px;
     margin-left: 10px;
 }
-
 .card-price {
     color: rgb(74, 28, 202);
     font-size: 18px;
     font-weight: 700;
     margin-left: 10px;
     margin-top: auto;
-    height:30px;
+    height:25px;
 }
 .card-cart {
     color: rgb(245, 237, 237);
@@ -58,18 +57,11 @@
     border-radius: 10px;
     font-size: 18px;
     font-weight: 400;
-    margin-top: 12px;
+    margin-top: 16px;
     margin-left: 100px;
 }
 .card-cart:hover{
     color:  rgb(245, 237, 237);
-    width: 150px;
-    height: 30px;
-    background-color: rgb(52, 76, 197);
-    border: 4px solid rgb(52, 76, 197);
-    border-radius: 10px;
-    font-size: 18px;
-    font-weight: 400;
-    margin-top: 12px;
-    margin-left: 100px;
+    background-color: rgb(63, 63, 65);
+    border: 4px solid rgb(63, 63, 65);
 }

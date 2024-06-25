@@ -35,6 +35,7 @@ export default function Electronics() {
      }
   return (
     <> 
+    <div className="flex-container">
     {newARRY.map((card) => (
       <Productcard
       id={card.id}
@@ -44,6 +45,7 @@ export default function Electronics() {
       price={card.price}
       />
      ))}
+     </div>
    </>
   );
 }

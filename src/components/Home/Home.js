@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Loader from "../Loader/Loader";
 import axios from 'axios';
 import Productcard from "../ProductCard/Productcard";
+import "./Home.css"
   
 const Home = () => {
   const [products, setProducts] = useState([])
@@ -30,6 +31,7 @@ const Home = () => {
 
   return (
     <> 
+    <div className="flex-container">
      {products.map((card) => (
         <Productcard
          id={card.id}
@@ -39,6 +41,7 @@ const Home = () => {
          price={card.price}
          />
       ))}
+      </div>
     </>
   );
 }
