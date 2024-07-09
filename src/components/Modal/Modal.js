@@ -4,7 +4,6 @@ import { db } from "../../Config/FirebaseConfig";
 import {
   collection,
   addDoc,
-  getDocs,
   updateDoc,
   doc,
   getDoc,
@@ -23,6 +22,7 @@ function Modal({
   const [number, setNumber] = useState();
   const [cashOnDelivery, setCashOnDelivery] = useState(false);
   const [cardPayment, setCardPayment] = useState(false);
+  const [status, setStatus] = useState("pending")
 
   const data = {
     name: name,
@@ -33,7 +33,9 @@ function Modal({
     cashOnDelivery: cashOnDelivery,
     items: cartItems,
     price: totalprice,
+    status, status,
   };
+  console.log(data)
 
   const OrderPlace = async () => {
     try {
@@ -41,7 +43,6 @@ function Modal({
       await addDoc(orderRef, data);
 
       let cartItems = JSON.parse(localStorage.getItem("cart"));
-      console.log(cartItems)
 
       const productquerySnapShot = await Promise.all(cartItems.map(item=> getDoc(doc(db, "products",item.id))))
       console.log(productquerySnapShot)
@@ -54,7 +55,6 @@ function Modal({
           quantity: item.data().quantity,
         })
       );
-      console.log(productquantity);
 
       let updatedQuantity = [];
 

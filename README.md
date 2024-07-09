@@ -87,9 +87,19 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
 │   │   ├── MensClothing/
 │   │   │   └── MensClothing.js
 │   │   │
+│   │   ├── Modal/
+│   │   │   ├── Modal.js
+│   │   │   └── Modal.css
+│   │   │
 │   │   ├── ProductCard/
 │   │   │   ├── ProductCard.js
 │   │   │   └── ProductCard.css
+│   │   │
+│   │   ├── ProtectedRout/
+│   │   │   └── ProtectedRoutForUser.js
+│   │   │
+│   │   ├── Shoes/
+│   │   │   └── Shoes.js
 │   │   │
 │   │   ├── SignUp/
 │   │   │   ├── SignUp.css
@@ -97,6 +107,9 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
 │   │   │
 │   │   └── Womens/
 │   │       └── Womens.js
+│   │
+│   ├── Config/
+│   │       └── FirebaseConfig.js
 │   │
 │   ├── App.css
 │   ├── App.js
