@@ -18,23 +18,31 @@ import Women from "./components/Womens/womens";
 import Electronics from "./components/Electronics/Electronics";
 import CartItems from "./components/CartItems/CartItems";
 import MensClothing from "./components/MensClothing/MensClothing";
-
+import ProtectedRoutesForUser from "./components/ProtectedRout/ProtectedRoutesForUser";
+import Shoes from "./components/Shoes/Shoes";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
+      <Route path="Login" element={<Login />} />
+      <Route path="SignUp" element={<SignUp />} />
       <Route path="/" element={<App />}>
         <Route path="" element={<Home />} />
         <Route path="Men's Clothing" element={<MensClothing />} />
-        <Route path="Women's Clothing" element={<Women/>} />
+        <Route path="Women's Clothing" element={<Women />} />
         <Route path="Jewelery" element={<Jewelery />} />
-        <Route path="Electronics" element={<Electronics />}/>
-        <Route path="Login" element={<Login />}/>
-        <Route path="SignUp" element={<SignUp />} />
-        <Route path="Card/:id" element={<Card />}/>
-        <Route path="CartItems" element={<CartItems />}/>
+        <Route path="Electronics" element={<Electronics />} />
+        <Route path="Shoes" element={<Shoes />} />
+        <Route path="Card/:id" element={<Card />} />
+        <Route
+          path="CartItems"
+          element={
+            <ProtectedRoutesForUser>
+              <CartItems />
+            </ProtectedRoutesForUser>
+          }
+        />
       </Route>
-     
     </>
   )
 );

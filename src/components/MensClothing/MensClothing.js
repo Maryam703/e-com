@@ -1,50 +1,55 @@
 import React, { useEffect, useState } from "react";
 import Productcard from "../ProductCard/Productcard";
-import axios from "axios"
+import { getDocs, collection } from "firebase/firestore";
+import { db } from "../../Config/FirebaseConfig";
 import Loader from "../Loader/Loader";
 
 export default function MensClothing() {
-  const [Products, setProducts] = useState([])
-  const [loading, setloading] = useState(true)
-
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-
-    const fetchingData = async() => {
+    let fetchData = async () => {
+      const docRef = collection(db, "products");
       try {
+        const querySnapshot = await getDocs(docRef);
+        let Products = [];
+        querySnapshot.forEach((doc) => {
+          Products.push({...doc.data(), id: doc.id});
+        });
 
-        let res = await axios.get('https://fakestoreapi.com/products');
-        setProducts(res.data);
-        setloading(false)
-
+        setProducts(Products);
+        setLoading(false);
       } catch (error) {
-        console.log(error)
-        setloading(false)
+        console.log(error);
+        setLoading(false);
       }
-    }
-    fetchingData();
-  }, [])
- 
-  const newARRY = Products.filter((item) => {
-    return item.category === "men's clothing";
-  });
-     
+    };
+    fetchData();
+  }, []);
+
+  let filteredProducts = products.filter(
+    (item) => item.category === "Men Clothing"
+  );
+
   if (loading) {
-    return <Loader />
+    return <Loader />;
   }
+
   return (
-    <> 
-     <div className="flex-container">
-    {newARRY.map((card) => (
-      <Productcard
-      id={card.id}
-      image={card.image}
-      title={card.title}
-      category={card.category}
-      price={card.price}
-      />
-     ))}
-     </div>
-   </>
+    <>
+      <div className="flex-container">
+        {filteredProducts.map((card) => (
+          <Productcard
+            id={card.id}
+            image={card.image}
+            title={card.title}
+            quantity={card.quantity}
+            category={card.category}
+            price={card.price}
+          />
+        ))}
+      </div>
+    </>
   );
 }

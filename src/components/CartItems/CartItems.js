@@ -1,24 +1,28 @@
 import React, { useEffect, useState } from "react";
 import "./CartItems.css";
+import Modal from "../Modal/Modal";
 
 export default function CartItems() {
   const [totalprice, settotalprice] = useState(0);
   const [cartItems, setCartItem] = useState([]);
   const [isReload, setReload] = useState(0);
-
-
+  const [popModal, setPopModal] = useState(false);
 
   useEffect(() => {
     let cartItems = JSON.parse(localStorage.getItem("cart"));
 
     if (cartItems) {
       let itemprice = cartItems.reduce((acc, item) => {
-        return acc + (item.price*item.quantity);
+        return acc + item.price * item.quantity;
       }, 0);
       settotalprice(itemprice);
       setCartItem(cartItems);
     }
   }, [isReload]);
+
+  const ResetCart = () => {
+    setCartItem([]);
+  };
 
   const IncQuantity = (idx) => {
     let cartItem = [...cartItems];
@@ -50,10 +54,19 @@ export default function CartItems() {
     localStorage.setItem("cart", JSON.stringify(cartItem));
     setReload((pri) => ++pri);
   };
-  //condition not rendering
-  if (cartItems.length<1) {
+
+  if (cartItems.length < 1) {
     return <p className="cart-para">No Product in your Cart</p>;
   }
+
+  const openModal = async () => {
+    setPopModal(true);
+  
+  };
+
+  const closeModal = () => {
+    setPopModal(false);
+  };
 
   return (
     <>
@@ -85,8 +98,18 @@ export default function CartItems() {
         ))}
         <div className="cart-footer">
           <div className="cart-total">${Number(totalprice.toFixed(2))}</div>
-          <div className="cart-payment">Pay Now</div>
+          <div className="cart-payment" onClick={openModal}>
+            Place Order
+          </div>
         </div>
+        {popModal && (
+          <Modal
+            closeModal={closeModal}
+            cartItems={cartItems}
+            totalprice={totalprice}
+            ResetCart={ResetCart}
+          />
+        )}
       </div>
     </>
   );
