@@ -27,18 +27,26 @@
 }
 .card-cetagory {
     color: rgb(220, 212, 212);
-    font-size: 18px;
-    height:30px;
-    margin-top: 20px;
+    font-size: 17px;
+    height:auto;
+    margin-top: auto;
     margin-left: 10px;
+}
+.card-quantity{
+    color: rgb(124, 120, 120);
+    font-size: 18px;
+    height:22px;
+    margin-top: 10px;
+    margin-left: 10px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 .card-titel {
     color: rgb(59, 55, 55);
     overflow: hidden;
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 600;
-    height: 20px;
-    margin-top: 20px;
+    height: auto;
+    margin-top: 10px;
     margin-left: 10px;
 }
 .card-price {

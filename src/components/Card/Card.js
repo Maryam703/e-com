@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import axios from "axios";
 import { useParams } from "react-router-dom";
 import Loader from "../Loader/Loader";
 import "./Card.css";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../../Config/FirebaseConfig";
 
 export default function Card() {
   const { id } = useParams();
@@ -14,8 +15,9 @@ export default function Card() {
   useEffect(() => {
     const fetchingData = async () => {
       try {
-        let res = await axios.get(`https://fakestoreapi.com/products/${id}`);
-        setProducts(res.data);
+        const docRef = doc(db, "products", id)
+        let product = await getDoc(docRef)
+        setProducts(product.data());
         setLoader(false);
       } catch (error) {
         console.log(error);
@@ -29,7 +31,7 @@ export default function Card() {
     console.log(product);
 
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const existingproduct = cart.find((item) => item.id === parseInt(id));
+    const existingproduct = cart.find((item) => item.id === id);
 
     if (existingproduct) {
       existingproduct.quantity++;
@@ -63,13 +65,16 @@ export default function Card() {
             <img className="card-img" src={product.image} alt="product image" />
           </div>
           <div className="card-detail">
-            <div className="titel-box">{product.title}</div>
+            <div className="titel-box">{product.name}</div>
             <div className="cetagory-box">{product.category}</div>
+            {product.quantity !== 0? <div className="quantity-box">Available:  {product.quantity}</div> : <div className="quantity-box">Out Of Stock</div>}
             <div className="price-box">${product.price}</div>
-            <div className="desc-box">{product.description}</div>
-            <button onClick={btnHandler} className="cart-box">
+            {product.quantity !== 0? <button onClick={btnHandler} className="cart-box">
               Add to cart
-            </button>
+            </button> :
+          <button className="cart-box">
+            Out Of Stock
+          </button>}
           </div>
         </div>
       </div>

@@ -4,6 +4,11 @@ import "./Header.css";
 
 export default function Header() {
   const [menulist, setMenulist] = useState(false);
+  const user = JSON.parse(localStorage.getItem("users"));
+
+  const Logout = () => {
+    localStorage.clear();
+  };
 
   return (
     <header className="nav-header">
@@ -14,12 +19,6 @@ export default function Header() {
               <div className="menu-bar-icon" onClick={() => setMenulist(true)}>
                 <i className="menu-icon fa-solid fa-bars"></i>
               </div>
-              {/*<div className= {menulist ? "menu-options-active" : "menu-options"}>
-        <Link to="Men's Clothing" className="option">Men's Clothing</Link>
-        <Link to="Women's Clothing" className="option">Women's Clothing</Link>
-        <Link to="Jewelery" className="option">Jewelery</Link>
-        <Link to="Electronics" className="option">Electronics</Link>
-      </div>*/}
             </div>
           </nav>
           <Link to="/" className="flex items-center">
@@ -29,14 +28,18 @@ export default function Header() {
               alt="Logo"
             />
           </Link>
-          <div className="flex items-center lg:order-2">
-            <Link
-              to="#"
-              className="text-white bg-orange-700 hover:bg-orange-800 focus:ring-4 focus:ring-orange-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none"
-            >
-              LogOut
-            </Link>
-          </div>
+          {user && (
+            <div className="flex items-center lg:order-2">
+              <Link
+                onClick={Logout}
+                to="/Login"
+                className="text-white bg-orange-700 hover:bg-orange-800 focus:ring-4 focus:ring-orange-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none"
+              >
+                LogOut
+              </Link>
+            </div>
+          )}
+
           <div
             className="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1"
             id="mobile-menu-2"
@@ -108,7 +111,26 @@ export default function Header() {
                     } duration-200 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
                   }
                 >
-                  Jewelery
+                  Women's Accessories
+                </NavLink>
+              </li>
+            </ul>
+          </div>
+          <div
+            className="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1"
+            id="mobile-menu-2"
+          >
+            <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
+              <li>
+                <NavLink
+                  to="Shoes"
+                  className={({ isActive }) =>
+                    `block py-2 pr-4 pl-3 ${
+                      isActive ? "text-orange-700" : "text-gray-700"
+                    } duration-200 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
+                  }
+                >
+                  Shoes
                 </NavLink>
               </li>
             </ul>
@@ -132,46 +154,7 @@ export default function Header() {
               </li>
             </ul>
           </div>
-
-          <div
-            className="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1"
-            id="mobile-menu-2"
-          >
-            <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
-              <li>
-                <NavLink
-                  to="Login"
-                  className={({ isActive }) =>
-                    `block py-2 pr-4 pl-3 ${
-                      isActive ? "text-orange-700" : "text-gray-700"
-                    } duration-200 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
-                  }
-                >
-                  SignIn
-                </NavLink>
-              </li>
-            </ul>
-          </div>
-          <div
-            className="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1"
-            id="mobile-menu-2"
-          >
-            <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
-              <li>
-                <NavLink
-                  to="SignUp"
-                  className={({ isActive }) =>
-                    `block py-2 pr-4 pl-3 ${
-                      isActive ? "text-orange-700" : "text-gray-700"
-                    } duration-200 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
-                  }
-                >
-                  SignUp
-                </NavLink>
-              </li>
-            </ul>
-          </div>
-          <div
+          {user.role === "user" && (<div
             className="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1"
             id="mobile-menu-2"
           >
@@ -189,7 +172,7 @@ export default function Header() {
                 </NavLink>
               </li>
             </ul>
-          </div>
+          </div>)}
         </div>
       </nav>
       <div className={menulist ? "menu-options-active" : "menu-options"}>
