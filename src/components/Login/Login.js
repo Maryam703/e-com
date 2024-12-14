@@ -26,7 +26,7 @@ function Login() {
           QuerySnapshot.forEach((doc) => (user = doc.data()));
 
           if (user) {
-            localStorage.setItem("users", JSON.stringify(user));
+            localStorage.setItem("user", JSON.stringify(user));
 
             setEmail("");
             setPassword("");

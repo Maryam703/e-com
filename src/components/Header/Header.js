@@ -4,10 +4,11 @@ import "./Header.css";
 
 export default function Header() {
   const [menulist, setMenulist] = useState(false);
-  const user = JSON.parse(localStorage.getItem("users"));
+  const user = JSON.parse(localStorage.getItem("user"));
+  console.log(user)
 
   const Logout = () => {
-    localStorage.clear();
+    localStorage.removeItem("user")
   };
 
   return (
@@ -28,7 +29,7 @@ export default function Header() {
               alt="Logo"
             />
           </Link>
-          {user && (
+          {user ? (
             <div className="flex items-center lg:order-2">
               <Link
                 onClick={Logout}
@@ -36,6 +37,15 @@ export default function Header() {
                 className="text-white bg-orange-700 hover:bg-orange-800 focus:ring-4 focus:ring-orange-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none"
               >
                 LogOut
+              </Link>
+            </div>
+          ) : (
+            <div className="flex items-center lg:order-2">
+              <Link to="/Login"  className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none" onClick={() => setMenulist(false)}>
+                SignIn
+              </Link>
+              <Link to="/SignUp"  className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none" onClick={() => setMenulist(false)}>
+                SignUp
               </Link>
             </div>
           )}
@@ -49,8 +59,7 @@ export default function Header() {
                 <NavLink
                   to="/"
                   className={({ isActive }) =>
-                    ` block py-2 pr-4 pl-3 duration-200 ${
-                      isActive ? "text-orange-700" : "text-gray-700"
+                    ` block py-2 pr-4 pl-3 duration-200 ${isActive ? "text-orange-700" : "text-gray-700"
                     } border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
                   }
                 >
@@ -68,8 +77,7 @@ export default function Header() {
                 <NavLink
                   to="Men's Clothing"
                   className={({ isActive }) =>
-                    `block py-2 pr-4 pl-3 ${
-                      isActive ? "text-orange-700" : "text-gray-700"
+                    `block py-2 pr-4 pl-3 ${isActive ? "text-orange-700" : "text-gray-700"
                     } duration-200 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
                   }
                 >
@@ -87,8 +95,7 @@ export default function Header() {
                 <NavLink
                   to="Women's Clothing"
                   className={({ isActive }) =>
-                    `block py-2 pr-4 pl-3 ${
-                      isActive ? "text-orange-700" : "text-gray-700"
+                    `block py-2 pr-4 pl-3 ${isActive ? "text-orange-700" : "text-gray-700"
                     } duration-200 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
                   }
                 >
@@ -106,8 +113,7 @@ export default function Header() {
                 <NavLink
                   to="Jewelery"
                   className={({ isActive }) =>
-                    `block py-2 pr-4 pl-3 ${
-                      isActive ? "text-orange-700" : "text-gray-700"
+                    `block py-2 pr-4 pl-3 ${isActive ? "text-orange-700" : "text-gray-700"
                     } duration-200 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
                   }
                 >
@@ -125,8 +131,7 @@ export default function Header() {
                 <NavLink
                   to="Shoes"
                   className={({ isActive }) =>
-                    `block py-2 pr-4 pl-3 ${
-                      isActive ? "text-orange-700" : "text-gray-700"
+                    `block py-2 pr-4 pl-3 ${isActive ? "text-orange-700" : "text-gray-700"
                     } duration-200 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
                   }
                 >
@@ -144,8 +149,7 @@ export default function Header() {
                 <NavLink
                   to="Electronics"
                   className={({ isActive }) =>
-                    `block py-2 pr-4 pl-3 ${
-                      isActive ? "text-orange-700" : "text-gray-700"
+                    `block py-2 pr-4 pl-3 ${isActive ? "text-orange-700" : "text-gray-700"
                     } duration-200 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
                   }
                 >
@@ -154,7 +158,7 @@ export default function Header() {
               </li>
             </ul>
           </div>
-          {user.role === "user" && (<div
+          {user?.role === "user" && (<div
             className="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1"
             id="mobile-menu-2"
           >
@@ -163,8 +167,7 @@ export default function Header() {
                 <NavLink
                   to="CartItems"
                   className={({ isActive }) =>
-                    `block py-2 pr-4 pl-3 ${
-                      isActive ? "text-orange-700" : "text-gray-700"
+                    `block py-2 pr-4 pl-3 ${isActive ? "text-orange-700" : "text-gray-700"
                     } duration-200 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
                   }
                 >
@@ -203,12 +206,6 @@ export default function Header() {
           onClick={() => setMenulist(false)}
         >
           Electronics
-        </Link>
-        <Link to="SignIn" className="option" onClick={() => setMenulist(false)}>
-          SignIn
-        </Link>
-        <Link to="SignUp" className="option" onClick={() => setMenulist(false)}>
-          SignUp
         </Link>
       </div>
     </header>

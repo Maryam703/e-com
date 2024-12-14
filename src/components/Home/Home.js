@@ -33,7 +33,6 @@ const Home = () => {
   if (loading) {
     return <Loader />;
   }
-  console.log(products)
 
   return (
     <>
